@@ -25,7 +25,7 @@ export const updateCompanySchema = createCompanySchema.extend({
   standardHoursPerDay: z.number().min(1).max(24).optional(),
   overtimeMultiplier: z.number().min(0).max(10).optional(),
   isActive: z.boolean().optional(),
-  logoUrl: z.string().url().optional().nullable().or(z.literal("")),
+  logoUrl: z.string().url().or(z.string().max(500).startsWith("/api/storage/public/")).optional().nullable().or(z.literal("")),
 });
 
 export const prepareLogoUploadSchema = z.object({

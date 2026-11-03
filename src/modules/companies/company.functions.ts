@@ -304,7 +304,7 @@ export const setCompanyLogoUrl = createServerFn({ method: "POST" })
   .validator(
     z.object({
       companyId: z.string().uuid(),
-      logoUrl: z.string().url(),
+      logoUrl: z.string().max(500).startsWith("/api/storage/public/company-logos/"),
     }),
   )
   .handler(async ({ data }): Promise<ActionResult<Company>> => {
